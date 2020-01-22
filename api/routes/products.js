@@ -8,8 +8,13 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+    const product = {
+        id : req.body.id,
+        title : req.body.title
+    };
     res.status(201).json({
-        message: 'Handling POST requests to /products'
+        message: 'Handling POST requests to /products',
+        product : product
     });
 });
 
