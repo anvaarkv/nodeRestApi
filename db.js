@@ -1,6 +1,8 @@
 // database.js
 const mongoose = require("mongoose");
-const dbPath = "mongodb://root:"+process.env.MONGO_LOCAL_PW+"@localhost:27017/nodeRest";
+
+const dbPath = "mongodb://localhost:27017/nodedb";
+// const dbPath = "mongodb://root:"+process.env.MONGO_LOCAL_PW+"@localhost:27017/nodedb";
 // const dbPath = "mongodb+srv://dev:"+process.env.MONGO_LOCAL_PW+"@sandboxcluster-aoqeu.mongodb.net/test?retryWrites=true&w=majority"
 mongoose.connect(dbPath, {
     useNewUrlParser: true,

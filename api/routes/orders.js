@@ -1,9 +1,21 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+const Order = require('../models/order');
 
 router.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'Orders were fetched'
+    Order.get(function (err, orders) {
+        if (err) {
+            res.json({
+                status: "error",
+                message: err,
+            });
+        }
+        res.status(200).json({
+            status: "success",
+            message: "Orders retrieved successfully",
+            data: orders
+        });
     });
 });
 

@@ -6,4 +6,8 @@ const productSchema = mongoose.Schema({
     price: Number
 });
 
-module.exports = mongoose.model('Product', productSchema);
+var Product = module.exports = mongoose.model('Product', productSchema);
+
+module.exports.get = function(callback,limit){
+    Product.find(callback).limit(limit)
+}

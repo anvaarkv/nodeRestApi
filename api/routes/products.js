@@ -4,9 +4,20 @@ const mongoose = require('mongoose');
 const Product = require('../models/product');
 
 router.get('/', (req, res, next) => {
+  Product.get(function (err, products) {
+    if (err) {
+        res.json({
+            status: "error",
+            message: err,
+        });
+    }
     res.status(200).json({
-        message: 'Handling GET requests to /products'
+        status: "success",
+        message: "Products retrieved successfully",
+        data: products
     });
+});
+
 });
 router.post('/', (req, res, next) => {
 const product = new Product({
@@ -36,7 +47,7 @@ router.get("/:productId", (req, res, next) => {
     Product.findById(id)
       .exec()
       .then(doc => {
-        console.log("From database", doc);
+        // console.log("From database", doc);
         if (doc) {
           res.status(200).json(doc);
         } else {
